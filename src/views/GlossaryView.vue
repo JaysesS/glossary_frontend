@@ -3,13 +3,12 @@
     <h1>Hello, {{ userLogin }}! Your id is {{ userId }}</h1>
     <h2>{{ userCreatedAt }}</h2>
     <h2>This is an about page!</h2>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "AboutView",
+  name: "GlossaryView",
   computed: {
     userId() {
       return this.$store.getters["AuthModule/getUserId"];

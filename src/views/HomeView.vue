@@ -5,14 +5,10 @@
 </template>
 
 <script>
-
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {},
-//   async created() {
-//     await this.$store.dispatch("AuthModule/checkUpdateUser");
-//   },
-}
+};
 </script>
 
 <style lang="scss">

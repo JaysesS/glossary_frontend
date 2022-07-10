@@ -54,6 +54,7 @@ export default {
         this.authError = true;
       }
       if (!this.authError) {
+        await this.$store.dispatch("AuthModule/checkUpdateUser");
         this.$router.push({ name: "Home" });
       }
     },
