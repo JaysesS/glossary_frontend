@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { AppModule } from './modules/AppModule';
 import { AuthModule } from './modules/AuthModule';
 
 export default createStore({
@@ -8,5 +9,6 @@ export default createStore({
   actions: {},
   modules: {
     AuthModule: AuthModule,
+    AppModule: AppModule
   },
 });

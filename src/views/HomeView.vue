@@ -8,6 +8,12 @@
 
 export default {
   name: 'HomeView',
-  components: {}
+  components: {},
+//   async created() {
+//     await this.$store.dispatch("AuthModule/checkUpdateUser");
+//   },
 }
 </script>
+
+<style lang="scss">
+</style>
