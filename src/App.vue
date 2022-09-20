@@ -1,6 +1,8 @@
 <template>
-  <CustomSideBar />
-  <div :style="{ 'margin-left': getSideBarWidth }">
+  <div>
+    <CustomSideBar />
+  </div>
+  <div :style="{ 'margin-left': getSideBarWidth, 'height': '100%'}">
     <router-view />
   </div>
 </template>
@@ -13,7 +15,8 @@ export default {
   },
   computed: {
     getSideBarWidth() {
-      return this.$store.getters.getSideBarWidth;
+        return "80px"
+    //   return this.$store.getters.getSideBarWidth;
     },
   }
 };
@@ -26,12 +29,20 @@ export default {
     url(./assets/BalsamiqSans-Bold.ttf) format("truetype");
 }
 
+body, html {
+    background-color: rgba(250, 252, 253, 0.999);
+    height: 100%;
+    width: 100%;
+}
+
 #app {
   font-family: BalsamiqSans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+    width: 100%;
 }
 
 nav {

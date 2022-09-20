@@ -20,4 +20,9 @@ export const AuthAPI = {
     const url = "user/me";
     return AuthAPIInstance.get(url);
   },
+  getWordList(offset, limit) {
+    const url = "word/list";
+    const data = { offset, limit };
+    return AuthAPIInstance.get(url, {params: data});
+  },
 };

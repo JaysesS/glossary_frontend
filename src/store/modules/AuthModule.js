@@ -14,6 +14,10 @@ export const AuthModule = {
         login: null,
         createdAt: null,
       },
+      words: [],
+      tags: [],
+      links: [],
+      priority: [],
     };
   },
 
@@ -29,6 +33,9 @@ export const AuthModule = {
     },
     getUserCreatedAt(state) {
       return state.user.createdAt;
+    },
+    getWordList(state) {
+      return state.words;
     },
   },
 
@@ -49,6 +56,10 @@ export const AuthModule = {
     },
     setUserCreatedAt(state, createdAt) {
       state.user.createdAt = createdAt;
+    },
+
+    setWordList(state, words) {
+      state.words = words;
     },
   },
 
@@ -81,6 +92,12 @@ export const AuthModule = {
       commit("setUserId", json.id);
       commit("setUserLogin", json.login);
       commit("setUserCreatedAt", json.created_at);
+    },
+
+    async getWordList({ commit }, { offset, limit}) {
+      const resp = await AuthAPI.getWordList(offset, limit);
+      const json = await resp.data;
+      commit("setWordList", json.items);
     },
   },
 };

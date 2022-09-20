@@ -15,12 +15,12 @@ if (token) apiConfig.headers["authorization"] = `Bearer ${token}`;
 export const AuthAPIInstance = axios.create(apiConfig);
 export const APIInstance = axios.create(apiConfig);
 
-APIInstance.interceptors.response.use(
+AuthAPIInstance.interceptors.response.use(
   function (response) {
     return response;
   },
   function (error) {
-    console.log(error.response.data);
+    console.log("Error", error.response.data);
     if (error.response.status === 401) {
       store.dispatch("AuthModule/onLogout");
       router.push("/login");

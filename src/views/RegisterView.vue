@@ -3,7 +3,7 @@
     <div class="col">
       <br />
       <div class="input-field-group mt">
-        <input v-model="login" class="input-field" placeholder="Логин.." />
+        <input v-model="login" class="input-field" placeholder="Логин.." tabindex="1"/>
         <div class="input-field-group-items">
           <button>{{ loginValidateIcon }}</button>
         </div>
@@ -14,6 +14,7 @@
           v-model="password"
           class="input-field"
           placeholder="Пароль.."
+          tabindex="2"
         />
         <div class="input-field-group-items">
           <button class="btn-click" @click="togglePassword">
@@ -23,7 +24,7 @@
         </div>
       </div>
       <br />
-      <button class="btn" @click="registerAction">Зарегистрироваться</button>
+      <button class="btn" @click="registerAction" tabindex="3">Зарегистрироваться</button>
       <div>
         <p class="mt" v-if="registerError">Чего-то вам не хватает.. 🙊</p>
       </div>
@@ -62,7 +63,7 @@ export default {
       this.showPassword = !this.showPassword;
     },
     fieldIsCorrect(value) {
-      return value.length >= 5 && value.length <= 30;
+      return value.length >= 4 && value.length <= 30;
     },
   },
   computed: {
@@ -94,13 +95,13 @@ export default {
   line-height: 1em;
   max-width: 100%;
   padding: 15px 20px;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.5s ease-in-out;
   background-size: 300% 100%;
   cursor: pointer;
 
   &:hover {
     background-position: 100% 0;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 
   &:focus {
@@ -133,6 +134,7 @@ export default {
   font-family: $global-font;
   border: 0;
   min-height: 50px;
+  max-width: 45vw;
   flex: 1;
   padding: 0.3rem 0.3rem 0.3rem 1rem;
   border-radius: 0.3rem;
@@ -145,9 +147,10 @@ export default {
 .input-field-group {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
   min-width: 30vw;
+  max-width: 75vw;
   border-radius: 0.5rem;
 }
 

@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .active {
-  background-color: rgba(74, 245, 154, 0.5);
+  background-color: c;
   border-radius: 10px;
   &:hover {
     background-color: rgba(74, 245, 154, 0.5) !important;
@@ -57,6 +57,7 @@ export default {
   cursor: pointer;
   color: white;
   text-decoration: none;
+  transition: 0.5s ease-in-out;
 
   .text {
     margin-left: 10px;
