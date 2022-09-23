@@ -1,28 +1,70 @@
 <template>
-  <div class="content">
-    <h1>Hello, {{ userLogin }}! Your id is {{ userId }}</h1>
-    <h2>{{ userCreatedAt }}</h2>
-    <h2>This is an about page!</h2>
-    {{ words }}
-    <div class="container">
-      <div class="col">
-        <div v-for="(word, index) in words" :key="word.id" class="item">
-          <div>
-            <h2>{{ index + 1 }}</h2>
-          </div>
-          <div class="itemCol">
-            <div>
-              <p class="f-30 f-bold">{{ word.name }}</p>
-            </div>
-            <div>
-              <p class="f-12">{{ word.updated_at }}</p>
-            </div>
-            <div>
-              <p class="f-12">{{ word.created_at }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  {{ words }}
+  <div class="container mx-auto center px-5">
+    
+    <div
+      v-for="(word, index) in words"
+      :key="word.id"
+      class="
+        p-6
+        max-w
+        bg-white
+        rounded-lg
+        border border-gray-200
+        shadow-md
+        hover:bg-gray-100
+        dark:bg-gray-800 dark:border-gray-700
+      "
+    >
+      <a href="#">
+        <h5
+          class="
+            mb-2
+            text-2xl
+            font-bold
+            tracking-tight
+            text-gray-900
+            dark:text-white
+          "
+        >
+          #{{ index + 1 }}{{ word.name }}
+        </h5>
+      </a>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        {{ word.description }}
+      </p>
+      <a
+        href="#"
+        class="
+          inline-flex
+          items-center
+          py-2
+          px-3
+          text-sm
+          font-medium
+          text-center text-white
+          bg-emerald-400
+          rounded-lg
+          hover:bg-emerald-500
+          focus:ring-4 focus:outline-none focus:ring-blue-300
+          dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+        "
+      >
+        Read more
+        <svg
+          aria-hidden="true"
+          class="ml-2 -mr-1 w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
     </div>
   </div>
 </template>
@@ -52,74 +94,4 @@ export default {
     });
   },
 };
-</script>
-
-<style scoped lang="scss">
-.content {
-  width: 100%;
-}
-
-.container {
-  font-family: $global-font;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: stretch;
-  //   height: 100%;
-  border: 2px solid #2c3e50;
-  border-radius: 10px;
-}
-
-// .col {
-//     height: 100%;
-// }
-
-.item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 5px;
-  background-color: rgb(172 238 203 / 50%);
-  font-size: 1em;
-  line-height: 1em;
-  border: 2px solid #2c3e50;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 12px 4px 20px 0px rgba(66, 185, 131, 0.2);
-  text-decoration: none;
-
-  &:hover {
-    background-color: rgba(229, 247, 237, 0.877);
-  }
-}
-
-.itemCol {
-  text-align: left;
-  padding-left: 10px;
-}
-
-.f-bold {
-  font-weight: bold;
-}
-
-.f-30 {
-  font-size: 30px;
-}
-
-.f-12 {
-  font-size: 12px;
-}
-
-// .col {
-//   display: flex;
-//   flex-direction: column;
-//   align-content: center;
-//   justify-content: center;
-//   align-items: stretch;
-// }
-</style>
+</script>   

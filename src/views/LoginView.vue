@@ -1,33 +1,174 @@
 <template>
-  <div class="container">
-    <div class="col">
-      <br />
-      <div class="input-field-group mt">
-        <input v-model="login" class="input-field" placeholder="Логин.." tabindex="1"/>
-        <div class="input-field-group-items">
-          <button>{{ loginValidateIcon }}</button>
-        </div>
-      </div>
-      <div class="input-field-group mt">
-        <input
-          :type="togglePasswordinputType"
-          v-model="password"
-          class="input-field"
-          placeholder="Пароль.."
-          tabindex="2"
-        />
-        <div class="input-field-group-items">
-          <button class="btn-click" @click="togglePassword">
-            {{ toggleShowPasswordIcon }}
-          </button>
-          <button>{{ passwordValidateIcon }}</button>
-        </div>
-      </div>
-      <br />
-      <button class="btn" @click="loginAction" tabindex="3">Войти</button>
+  <div
+    class="
+      flex
+      min-h-full
+      items-center
+      justify-center
+      py-12
+      px-4
+      sm:px-6
+      lg:px-8
+    "
+  >
+    <div class="w-full max-w-md space-y-8">
       <div>
-        <p class="mt" v-if="authError">Вы где-то ошиблись... 🙊</p>
+        <img
+          class="mx-auto h-12 w-auto"
+          src="../assets/logo.png"
+          alt="Glossary app"
+        />
+        <h2
+          class="
+            mt-6
+            text-center text-3xl
+            font-bold
+            tracking-tight
+            text-gray-900
+          "
+        >
+          Войти в аккаунт
+        </h2>
       </div>
+      <form class="mt-8 space-y-6" @submit.prevent="loginAction">
+        <div class="-space-y-px-2 rounded-md shadow-sm">
+          <div class="flex">
+            <label for="email-address" class="sr-only">Логин</label>
+            <input
+              v-model="login"
+              id="email-address"
+              name="email"
+              required
+              class="
+                relative
+                block
+                w-full
+                appearance-none
+                rounded-none rounded-l-md
+                border border-gray-300
+                px-3
+                py-2
+                text-gray-900
+                placeholder-gray-500
+                focus:z-10
+                focus:border-indigo-500
+                focus:outline-none
+                focus:ring-indigo-500
+                sm:text-sm
+              "
+              placeholder="Логин"
+            />
+            <span
+              class="
+                inline-flex
+                items-center
+                px-3
+                text-sm text-gray-900
+                bg-gray-200
+                rounded-r-md
+                border border-r-0 border-gray-300
+                dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600
+              "
+            >
+              {{ loginValidateIcon }}
+            </span>
+          </div>
+          <div class="flex mt-2">
+            <label for="password" class="sr-only">Пароль</label>
+            <input
+              v-model="password"
+              id="password"
+              name="password"
+              :type="togglePasswordinputType"
+              autocomplete="current-password"
+              required
+              class="
+                relative
+                block
+                w-full
+                appearance-none
+                rounded-none rounded-l-md
+                border border-gray-300
+                px-3
+                py-2
+                text-gray-900
+                placeholder-gray-500
+                focus:z-10
+                focus:border-indigo-500
+                focus:outline-none
+                focus:ring-indigo-500
+                sm:text-sm
+              "
+              placeholder="Пароль"
+            />
+            <href
+              class="
+                inline-flex
+                items-center
+                px-3
+                py-2
+                text-sm text-gray-900
+                bg-gray-200
+                border border-r-0 border-gray-300
+                dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600
+              "
+              @click="togglePassword"
+            >
+              {{ toggleShowPasswordIcon }}
+            </href>
+            <span
+              class="
+                inline-flex
+                items-center
+                px-3
+                text-sm text-gray-900
+                bg-gray-200
+                rounded-r-md
+                border border-r-0 border-gray-300
+                dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600
+              "
+            >
+              {{ passwordValidateIcon }}
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="
+              group
+              relative
+              flex
+              w-full
+              justify-center
+              rounded-md
+              py-2
+              px-4
+              text-sm
+              font-medium
+              text-white
+              custombutton
+            "
+          >
+            Войти
+          </button>
+          <div>
+            <p
+              v-if="authError"
+              class="
+                mt-6
+                text-center text-3xs
+                font-bold
+                tracking-tight
+                text-gray-900
+              "
+            >
+              Вы где-то ошиблись... 🙊
+            </p>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -63,7 +204,7 @@ export default {
       this.showPassword = !this.showPassword;
     },
     fieldIsCorrect(value) {
-      return value.length >= 5 && value.length <= 30;
+      return value.length >= 4 && value.length <= 30;
     },
   },
   computed: {
@@ -83,90 +224,15 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.btn {
-  background-image: linear-gradient(140deg, #af40ff, #5b42f3, #30dd8a, #cef109);
-  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
-  border: 0;
-  border-radius: 8px;
-  color: #ffffff;
-  font-family: $global-font;
-  font-size: 1em;
-  line-height: 1em;
-  max-width: 100%;
-  padding: 15px 20px;
-  transition: all 0.5s ease-in-out;
-  background-size: 300% 100%;
-  cursor: pointer;
-
-  &:hover {
-    background-position: 100% 0;
+<style scoped>
+.custombutton {
+    background-image: linear-gradient(140deg, #af40ff, #5b42f3, #30dd8a, #cef109);
+    background-size: 300% 100%;
     transition: all 0.5s ease-in-out;
-  }
-
-  &:focus {
-    outline: none;
-  }
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: center;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: stretch;
-}
-
-.mt {
-  margin-top: 10px;
-}
-
-.input-field {
-  font-family: $global-font;
-  border: 0;
-  min-height: 50px;
-  max-width: 45vw;
-  flex: 1;
-  padding: 0.3rem 0.3rem 0.3rem 1rem;
-  border-radius: 0.3rem;
-
-  &:focus {
-    outline: 0;
-  }
-}
-
-.input-field-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
-  min-width: 30vw;
-  max-width: 75vw;
-  border-radius: 0.5rem;
-}
-
-.input-field-group-items {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-
-  button {
-    background-color: transparent;
-    outline: 0;
-    border: 0;
-  }
-
-  .btn-click:hover {
-    cursor: pointer;
-  }
+.custombutton:hover {
+    background-position: 100% 0;
+    transition: all 0.5s ease-in-out !important;
 }
 </style>
