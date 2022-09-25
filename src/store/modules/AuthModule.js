@@ -14,10 +14,11 @@ export const AuthModule = {
         login: null,
         createdAt: null,
       },
-      words: [],
-      tags: [],
+      wordListPrepared: [],
+      words: {},
+      tags: {},
+      priority: {},
       links: [],
-      priority: [],
     };
   },
 
@@ -34,8 +35,8 @@ export const AuthModule = {
     getUserCreatedAt(state) {
       return state.user.createdAt;
     },
-    getWordList(state) {
-      return state.words;
+    getPreparedWordList(state) {
+      return state.wordListPrepared;
     },
   },
 
@@ -59,8 +60,54 @@ export const AuthModule = {
     },
 
     setWordList(state, words) {
-      state.words = words;
+      const itemList = {};
+      for (const i in words) {
+        let item = words[i];
+        itemList[item.id] = item;
+      }
+      state.words = itemList;
     },
+    setTagList(state, tags) {
+      const itemList = {};
+      for (const i in tags) {
+        let item = tags[i];
+        itemList[item.id] = item;
+      }
+      state.tags = itemList;
+    },
+    setPriorityList(state, priorities) {
+      const itemList = {};
+      for (const i in priorities) {
+        let item = priorities[i];
+        itemList[item.id] = item;
+      }
+      state.priority = itemList;
+    },
+    setLinkList(state, links) {
+      state.links = links;
+    },
+
+    setWordListPrepared(state) {
+        const words = {};
+        for (const i in state.words) {
+          let word = state.words[i];
+          let priority = state.priority[word.priority_id];
+          console.log(priority.name);
+          word["priority"] = priority.name;
+          word["tags"] = [];
+          words[word.id] = word;
+        }
+        for (const i in state.links) {
+          let link = state.links[i];
+          let word = words[link.word_id];
+          word["tags"].push(state.tags[link.tag_id]);
+        }
+        const wordList = [];
+        for (const i in words) {
+          wordList.push(words[i]);
+        }
+        state.wordListPrepared = wordList;
+    }
   },
 
   actions: {
@@ -94,10 +141,25 @@ export const AuthModule = {
       commit("setUserCreatedAt", json.created_at);
     },
 
-    async getWordList({ commit }, { offset, limit}) {
+    async getWordList({ commit }, { offset, limit }) {
       const resp = await AuthAPI.getWordList(offset, limit);
       const json = await resp.data;
       commit("setWordList", json.items);
+    },
+    async getTagList({ commit }, { offset, limit }) {
+      const resp = await AuthAPI.getTagList(offset, limit);
+      const json = await resp.data;
+      commit("setTagList", json.items);
+    },
+    async getPriorityList({ commit }, { offset, limit }) {
+      const resp = await AuthAPI.getPriorityList(offset, limit);
+      const json = await resp.data;
+      commit("setPriorityList", json.items);
+    },
+    async getLinkList({ commit }, { offset, limit }) {
+      const resp = await AuthAPI.getLinkList(offset, limit);
+      const json = await resp.data;
+      commit("setLinkList", json.items);
     },
   },
 };

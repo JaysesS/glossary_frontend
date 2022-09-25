@@ -33,7 +33,7 @@ export default {
     },
     linkStyle() {
       const base_style = {
-        "bg-gray-900": this.isActive || this.isHover, // active
+        "bg-gray-800": this.isActive || this.isHover, // active
         "bg-gray-700": !this.isActive && !this.isHover, // hover
         "text-white": this.isActive || this.isHover, // active
         "text-gray-300": !this.isActive && !this.isHover, // hover

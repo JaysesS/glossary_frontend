@@ -23,6 +23,21 @@ export const AuthAPI = {
   getWordList(offset, limit) {
     const url = "word/list";
     const data = { offset, limit };
-    return AuthAPIInstance.get(url, {params: data});
+    return AuthAPIInstance.get(url, { params: data });
+  },
+  getTagList(offset, limit) {
+    const url = "tag/list";
+    const data = { offset, limit };
+    return AuthAPIInstance.get(url, { params: data });
+  },
+  getLinkList(offset, limit) {
+    const url = "link/list";
+    const data = { offset, limit };
+    return AuthAPIInstance.get(url, { params: data });
+  },
+  getPriorityList(offset, limit) {
+    const url = "priority/list";
+    const data = { offset, limit };
+    return AuthAPIInstance.get(url, { params: data });
   },
 };
